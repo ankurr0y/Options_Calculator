@@ -8,9 +8,6 @@ def index():
     form=InfoForm()
     return render_template('index.html',form=form)
 
-@app.route('/calculation/',methods=['GET','POST'])
-def printout():
-    print(7)
     
 if __name__ == '__main__':
    app.run()
