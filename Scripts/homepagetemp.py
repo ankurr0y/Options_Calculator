@@ -1,9 +1,11 @@
-from flask import Flask,render_template,url_for
+from flask import Flask,render_template,url_for,flash,request
+from form_function import InfoForm
 app=Flask(__name__)
+app.secret_key = 'development key'
 
-@app.route('/')
+@app.route('/',methods=['GET','POST'])
 def index():
-    return render_template('index.html')
-
+    form=InfoForm()
+    return render_template('index.html',form=form)
 if __name__ == '__main__':
    app.run()
