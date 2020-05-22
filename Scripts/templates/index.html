@@ -1,12 +1,9 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html > <!--<![endif]-->
+<html > 
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Options Calculator</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="{{url_for('static',filename='apple-touch-icon.png')}}">
@@ -43,27 +40,35 @@
         <script src="{{url_for('static',filename='js/plugins.js')}}"></script>
         <script src="{{url_for('static',filename='js/main.js')}}"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <form action="" method=post onsubmit="displayer()">
-        	<fieldset>
-        		<legend>Form for Option Evaluation</legend>
-        		{{ form.hidden_tag() }}
-        	
-        		<div class="form-control">
-        			{{ form.currentStockPrice.label }}<br>
-        			{{ form.currentStockPrice}}<br>
-
-        			{{ form.riskFreeRate.label }}<br>
-        			{{ form.riskFreeRate }}<br>
-
-        			{{ form.exercisePrice.label }}<br>
-        			{{ form.exercisePrice }}<br>
-
-        			{{ form.file.label }}<br>
-        			{{ form.file }}<br>
-        			{{ form.submit }}
-        		</div>
-        	</fieldset>
+        
+        <form action="" method=post onsubmit="displayer()" class="form-control">
+        		<table class="table-bordered" style="width: 100%;background-color: green;color: white;">
+        			<tr>
+        				<th colspan="2" >
+        					<legend class="label-default" style="color: cyan;">Form for Option Evaluation</legend>
+        					{{ form.hidden_tag() }}
+        				</th>
+        			</tr>
+        			<tr>
+        				<td align="right">{{ form.currentStockPrice.label }}</td>
+        				<td align="left">{{ form.currentStockPrice}}</td>
+        			</tr>
+        			<tr>
+        				<td align="right">{{ form.riskFreeRate.label }}</td>
+        				<td align="left">{{ form.riskFreeRate }}</td>
+        			</tr>
+        			<tr>
+        				<td align="right">{{ form.exercisePrice.label }}</td>
+        				<td align="left">{{ form.exercisePrice }}</td>
+        			</tr>
+        			<tr>
+        				<td align="right">{{ form.file.label }}</td>
+        				<td align="left">{{ form.file }}</td>
+        			</tr>
+        			<tr>
+        				<td colspan="2" align="center">{{ form.submit }}</td>
+        			</tr>
+        		</table>
         </form>
         <script type="text/javascript">
         	function displayer() {
