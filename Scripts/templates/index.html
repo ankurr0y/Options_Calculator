@@ -50,6 +50,10 @@
         				</th>
         			</tr>
         			<tr>
+        				<td align="right">{{ form.file.label }}</td>
+        				<td align="left">{{ form.file }}</td>
+        			</tr>
+        			<tr>
         				<td align="right">{{ form.currentStockPrice.label }}</td>
         				<td align="left">{{ form.currentStockPrice}}</td>
         			</tr>
@@ -60,10 +64,6 @@
         			<tr>
         				<td align="right">{{ form.exercisePrice.label }}</td>
         				<td align="left">{{ form.exercisePrice }}</td>
-        			</tr>
-        			<tr>
-        				<td align="right">{{ form.file.label }}</td>
-        				<td align="left">{{ form.file }}</td>
         			</tr>
         			<tr>
         				<td colspan="2" align="center">{{ form.submit }}</td>
