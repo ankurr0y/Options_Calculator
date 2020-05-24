@@ -1,8 +1,16 @@
 from flask import Flask,render_template,url_for,flash,request
 from form_function import InfoForm
+import pandas as pd
+
 app=Flask(__name__)
 app.secret_key = 'development key'
 filename=''
+def extract(filename):
+   print(filename)
+   extension='templates//'+filename
+   df=pd.read_csv(extension)
+   high=df['High']
+   print(high)
 @app.route('/',methods=['GET','POST'])
 @app.route('/home/',methods=['GET','POST'])
 def upload():
@@ -15,11 +23,9 @@ def index():
         f.save('templates/'+f.filename)
         print(type(f.filename))
         filename=f.filename
-        print(filename)
+        extract(filename)
         form=InfoForm()
         return render_template('index.html',form=form,filename=filename)
 
-def getFileName():
-   return filename
 if __name__ == '__main__':
    app.run()
