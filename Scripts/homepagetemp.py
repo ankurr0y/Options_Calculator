@@ -9,8 +9,7 @@ def extract(filename):
    print(filename)
    extension='templates//'+filename
    df=pd.read_csv(extension)
-   high=df['High']
-   print(high)
+   high=df[['High','Low']]
    return high
 @app.route('/',methods=['GET','POST'])
 @app.route('/home/',methods=['GET','POST'])
