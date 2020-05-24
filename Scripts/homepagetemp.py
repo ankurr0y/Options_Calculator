@@ -11,6 +11,7 @@ def extract(filename):
    df=pd.read_csv(extension)
    high=df['High']
    print(high)
+   return high
 @app.route('/',methods=['GET','POST'])
 @app.route('/home/',methods=['GET','POST'])
 def upload():
@@ -23,9 +24,8 @@ def index():
         f.save('templates/'+f.filename)
         print(type(f.filename))
         filename=f.filename
-        extract(filename)
         form=InfoForm()
-        return render_template('index.html',form=form,filename=filename)
+        return render_template('index.html',form=form,filename=extract(filename))
 
 if __name__ == '__main__':
    app.run()
