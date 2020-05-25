@@ -22,13 +22,13 @@ def homepage():
 @app.route('/next/',methods=['GET','POST'])
 def index():
     if request.method == 'POST':
-        '''f = request.files['file']
+        f = request.files['file']
         f.save('templates/'+f.filename)
         print(type(f.filename))
         filename=f.filename
         form=InfoForm()
-        return render_template('index.html',form=form,filename=extract(filename))'''
-        return render_template(url_for('youtube.com'))
+        #return render_template('index.html',form=form,filename=extract(filename))
+        return render_template('404.html')
 
 if __name__ == '__main__':
    app.run()
