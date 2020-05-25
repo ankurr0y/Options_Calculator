@@ -20,8 +20,8 @@
         <script src="{{url_for('static',filename='js/main.js')}}"></script>
       <form action = "http://localhost:5000/next" method = "POST" 
          enctype = "multipart/form-data" class="navbar-form form-control">
-         <h4 class="alert h4">Enter the Uploadable file:</h4>
-         <input type = "file" name = "file" />
+         <h4 class="alert h4">Enter the Uploadable file (Only .csv format allowed):</h4>
+         <input type = "file" name = "file" accept=".csv" />
          <input type = "submit"/>
       </form>
    </body>
