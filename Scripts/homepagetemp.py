@@ -23,10 +23,21 @@ def homepage():
 def index():
     if request.method == 'POST':
         f = request.files['file']
+        a=request.form
+        for A,B in a.items():
+           if A=='currentStockPrice':
+              csp=float(B)
+           elif A== 'riskFreeRate':
+              rfr=float(B)
+           elif A=='exercisePrice':
+              ep=float(B)
+        print(type(csp))
+        print(csp)
+        print(rfr)
+        print(ep)
         f.save('templates/'+f.filename)
-        print(type(f.filename))
+        #print(type(f.filename))
         filename=f.filename
-        form=InfoForm()
         #return render_template('index.html',form=form,filename=extract(filename))
         return render_template('404.html')
 
