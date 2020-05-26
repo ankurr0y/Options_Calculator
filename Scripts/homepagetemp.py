@@ -1,4 +1,4 @@
-from flask import Flask,render_template,url_for,flash,request
+from flask import Flask,render_template,url_for,flash,request,redirect
 from form_function import InfoForm
 import pandas as pd
 from extractor import extracthigh,extractlow,extractdate
@@ -44,6 +44,16 @@ def index():
         date=extractdate(filename)
         upvalue=modelmax(date,high)
         downvalue=modelmin(date,high)
+        if csp>upvalue:
+           flash('Current stock price is too high')
+           form=InfoForm()
+           return redirect(url_for('homepage'))
+           #return render_template('Options_Calculator.html',form=form)
+        if csp<downvalue:
+           flash("Current stock price is too low")
+           form=InfoForm()
+           return redirect(url_for('homepage'))
+           #return render_template('Options_Calculator.html',form=form)
         print(upvalue)
         print(downvalue)
         #print(high)

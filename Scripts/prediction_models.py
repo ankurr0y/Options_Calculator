@@ -32,8 +32,12 @@ def modelmax(date,high):
                 #print(r1)
                 #print(r2)
                 break
+            elif degree>20 :
+                break
             else:
                 degree+=1
+        elif degree>20:
+            break
         else:
             degree+=1
     #print(mymodel)
@@ -66,8 +70,12 @@ def modelmin(date,low):
                 #print(r1)
                 #print(r2)
                 break
+            elif degree>20 :
+                break
             else:
                 degree+=1
+        elif degree>20 :
+                break
         else:
             degree+=1
     #print(mymodel)
