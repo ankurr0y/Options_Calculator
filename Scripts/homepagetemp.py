@@ -1,7 +1,9 @@
-from flask import Flask,render_template,url_for,flash,request
+from flask import Flask,render_template,url_for,flash,request,redirect
 from form_function import InfoForm
 import pandas as pd
-
+from extractor import extracthigh,extractlow,extractdate
+from prediction_models import modelmin,modelmax
+from pricing_formula import retrieve_price
 app=Flask(__name__)
 app.secret_key = 'development key'
 filename=''
@@ -31,13 +33,35 @@ def index():
               rfr=float(B)
            elif A=='exercisePrice':
               ep=float(B)
-        print(type(csp))
-        print(csp)
-        print(rfr)
-        print(ep)
-        f.save('templates/'+f.filename)
+        #print(type(csp))
+        #print(csp)
+        #print(rfr)
+        #print(ep)
+        f.save('csvs/'+f.filename)
         #print(type(f.filename))
         filename=f.filename
+        high=extracthigh(filename)
+        low=extractlow(filename)
+        date=extractdate(filename)
+        upvalue=modelmax(date,high)
+        downvalue=modelmin(date,high)
+        '''if csp>upvalue:
+           flash('Current stock price is too high')
+           form=InfoForm()
+           return redirect(url_for('homepage'))
+           #return render_template('Options_Calculator.html',form=form)
+        if csp<downvalue:
+           flash("Current stock price is too low")
+           form=InfoForm()
+           return redirect(url_for('homepage'))
+           #return render_template('Options_Calculator.html',form=form)'''
+        #print(upvalue)
+        #print(downvalue)
+        option_price=retrieve_price(csp,rfr,ep,upvalue,downvalue)
+        print(option_price)
+        #print(high)
+        #print(low)
+        #print(date)
         #return render_template('index.html',form=form,filename=extract(filename))
         return render_template('404.html')
 
