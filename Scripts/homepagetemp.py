@@ -3,6 +3,7 @@ from form_function import InfoForm
 import pandas as pd
 from extractor import extracthigh,extractlow,extractdate
 from prediction_models import modelmin,modelmax
+from pricing_formula import retrieve_price
 app=Flask(__name__)
 app.secret_key = 'development key'
 filename=''
@@ -44,7 +45,7 @@ def index():
         date=extractdate(filename)
         upvalue=modelmax(date,high)
         downvalue=modelmin(date,high)
-        if csp>upvalue:
+        '''if csp>upvalue:
            flash('Current stock price is too high')
            form=InfoForm()
            return redirect(url_for('homepage'))
@@ -53,9 +54,11 @@ def index():
            flash("Current stock price is too low")
            form=InfoForm()
            return redirect(url_for('homepage'))
-           #return render_template('Options_Calculator.html',form=form)
-        print(upvalue)
-        print(downvalue)
+           #return render_template('Options_Calculator.html',form=form)'''
+        #print(upvalue)
+        #print(downvalue)
+        option_price=retrieve_price(csp,rfr,ep,upvalue,downvalue)
+        print(option_price)
         #print(high)
         #print(low)
         #print(date)
