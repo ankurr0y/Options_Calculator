@@ -1,6 +1,7 @@
 from flask import Flask,render_template,url_for,flash,request
 from form_function import InfoForm
 import pandas as pd
+from extractor import extracthigh,extractlow,extractdate
 
 app=Flask(__name__)
 app.secret_key = 'development key'
@@ -31,13 +32,19 @@ def index():
               rfr=float(B)
            elif A=='exercisePrice':
               ep=float(B)
-        print(type(csp))
-        print(csp)
-        print(rfr)
-        print(ep)
-        f.save('templates/'+f.filename)
+        #print(type(csp))
+        #print(csp)
+        #print(rfr)
+        #print(ep)
+        f.save('csvs/'+f.filename)
         #print(type(f.filename))
         filename=f.filename
+        high=extracthigh(filename)
+        low=extractlow(filename)
+        date=extractdate(filename)
+        print(high)
+        print(low)
+        print(date)
         #return render_template('index.html',form=form,filename=extract(filename))
         return render_template('404.html')
 
