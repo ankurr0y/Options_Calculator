@@ -2,7 +2,7 @@ from flask import Flask,render_template,url_for,flash,request
 from form_function import InfoForm
 import pandas as pd
 from extractor import extracthigh,extractlow,extractdate
-
+from prediction_models import modelmin,modelmax
 app=Flask(__name__)
 app.secret_key = 'development key'
 filename=''
@@ -42,9 +42,13 @@ def index():
         high=extracthigh(filename)
         low=extractlow(filename)
         date=extractdate(filename)
-        print(high)
-        print(low)
-        print(date)
+        upvalue=modelmax(date,high)
+        #downvalue=modelmin(date,high)
+        print(upvalue)
+        #print(downvalue)
+        #print(high)
+        #print(low)
+        #print(date)
         #return render_template('index.html',form=form,filename=extract(filename))
         return render_template('404.html')
 
