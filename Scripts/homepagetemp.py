@@ -58,12 +58,12 @@ def index():
         #print(upvalue)
         #print(downvalue)
         option_price=retrieve_price(csp,rfr,ep,upvalue,downvalue)
-        print(option_price)
+        #print(option_price)
         #print(high)
         #print(low)
         #print(date)
         #return render_template('index.html',form=form,filename=extract(filename))
-        return render_template('404.html')
+        return render_template('result.html',price=option_price)
 
 if __name__ == '__main__':
    app.run()

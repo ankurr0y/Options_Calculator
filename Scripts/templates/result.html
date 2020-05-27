@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Result</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="{{url_for('static',filename='apple-touch-icon.png')}}">
+
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+        </style>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/main.min.css')}}">
+
+        <script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
+</head>
+<body>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"><\/script>')</script>
+
+        <script src="{{url_for('static',filename='js/vendor/bootstrap.min.js')}}"></script>
+
+        <script src="{{url_for('static',filename='js/plugins.js')}}"></script>
+        <script src="{{url_for('static',filename='js/main.js')}}"></script>
+    <h1 style="font-size: 50px">The recommended price of the option is: {{price}}</h1>
+    <h2><a href="localhost:5000/home/" target="_blank">Go back for another analysis</a></h2>
+</body>
+</html>
