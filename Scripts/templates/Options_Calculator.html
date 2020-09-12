@@ -75,56 +75,13 @@ document.getElementById("defaultOpen").click();
         <script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
     </head>
     <body>
-    	 <button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
+    	<button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
 		<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
-		<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
 		<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+		<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
 
 		<div id="Home" class="tabcontent">
-  			<h3>Home</h3>
-  			<p>Home is where the heart is..</p>
-		</div>
-
-		<div id="News" class="tabcontent">
-  			<h3>News</h3>
-  			<p>Some news this fine day!</p>
-		</div>
-
-		<div id="Contact" class="tabcontent">
-  			<h3>Contact</h3>
-  			<p>Get in touch, or swing by for a cup of coffee.</p>
-		</div>
-
-		<div id="About" class="tabcontent">
-  			<h3>About</h3>
-  			<p>Who we are and what we do.</p>
-		</div> 
-        {% with messages= get_flashed_messages() %}
-            {% if messages: %}
-                {% for message in messages:%}
-                    <b><h1>{{message}}</h1></b><br>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        {% for message in form.currentStockPrice.errors %}
-            <div>{{ message }}</div>
-        {% endfor %}
-
-        {% for message in form.riskFreeRate.errors %}
-            <div>{{ message }}</div>
-        {% endfor %}
-
-        {% for message in form.exercisePrice.errors %}
-            <div>{{ message }}</div>
-        {% endfor %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"><\/script>')</script>
-
-        <script src="{{url_for('static',filename='js/vendor/bootstrap.min.js')}}"></script>
-
-        <script src="{{url_for('static',filename='js/plugins.js')}}"></script>
-        <script src="{{url_for('static',filename='js/main.js')}}"></script>
-        <form action="http://localhost:5000/next" method= "POST" enctype = "multipart/form-data"  class="form-control">
+  			<form action="http://localhost:5000/next" method= "POST" enctype = "multipart/form-data"  class="form-control">
                 <table class="table-bordered" style="width: 100%;background-color: green;color: orange;">
                     <tr>
                         <th colspan="2" >
@@ -153,5 +110,48 @@ document.getElementById("defaultOpen").click();
                     </tr>
                 </table>
         </form>
+		</div>
+
+		<div id="News" class="tabcontent">
+  			<h3>News</h3>
+  			<p>Some news this fine day!</p>
+		</div>
+
+		
+
+		<div id="About" class="tabcontent">
+  			<h3>About</h3>
+  			<p>Who we are and what we do.</p>
+		</div>
+		<div id="Contact" class="tabcontent">
+  			<h3>Contact</h3>
+  			<p>Get in touch, or swing by for a cup of coffee.</p>
+		</div> 
+        {% with messages= get_flashed_messages() %}
+            {% if messages: %}
+                {% for message in messages:%}
+                    <b><h1>{{message}}</h1></b><br>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% for message in form.currentStockPrice.errors %}
+            <div>{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.riskFreeRate.errors %}
+            <div>{{ message }}</div>
+        {% endfor %}
+
+        {% for message in form.exercisePrice.errors %}
+            <div>{{ message }}</div>
+        {% endfor %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"><\/script>')</script>
+
+        <script src="{{url_for('static',filename='js/vendor/bootstrap.min.js')}}"></script>
+
+        <script src="{{url_for('static',filename='js/plugins.js')}}"></script>
+        <script src="{{url_for('static',filename='js/main.js')}}"></script>
+        
     </body>
 </html>
