@@ -41,9 +41,9 @@
 						}
 
 			#Home {background-color: red;}
-			#News {background-color: green;}
+			#Concept {background-color: green;}
 			#Contact {background-color: blue;}
-			#About {background-color: orange;}
+			#Future {background-color: orange;}
         </style>
         <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/main.min.css')}}">
@@ -76,56 +76,61 @@ document.getElementById("defaultOpen").click();
     </head>
     <body>
     	<button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
-		<button class="tablink" onclick="openPage('News', this, 'green')" id="defaultOpen">News</button>
-		<button class="tablink" onclick="openPage('About', this, 'orange')">About</button>
+		<button class="tablink" onclick="openPage('Concept', this, 'green')" id="defaultOpen">Concepts</button>
+		<button class="tablink" onclick="openPage('Future', this, 'orange')">Future Works</button>
 		<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
 
 		<div id="Home" class="tabcontent">
   			<form action="http://localhost:5000/next" method= "POST" enctype = "multipart/form-data"  class="form-control">
-                <table class="table-bordered" style="width: 100%;background-color: green;color: orange;">
+                <table class="table-bordered" style="width: 103%;background-color: red;color: pink;margin-left: -12px; margin-top: -8px;">
                     <tr>
                         <th colspan="2" >
-                            <legend class="label-default" style="color: cyan;">Form for Option Evaluation</legend>
+                            <legend class="label-default" style="color: cyan;width: 100%;">Form for Option Evaluation</legend>
                             {{ form.hidden_tag() }}
                         </th>
                     </tr>
                     <tr>
                         <td align="right">{{ form.currentStockPrice.label }}</td>
-                        <td align="left">{{ form.currentStockPrice}}</td>
+                        <td align="left" style="color: black;">{{ form.currentStockPrice}}</td>
                     </tr>
                     <tr>
                         <td align="right">{{ form.riskFreeRate.label }}<a href="https://ycharts.com/indicators/10_year_treasury_rate" style="color: white;" target="_blank">(Find it here)</a></td>
-                        <td align="left">{{ form.riskFreeRate }}</td>
+                        <td align="left" style="color: black;">{{ form.riskFreeRate }}</td>
                     </tr>
                     <tr>
                         <td align="right">{{ form.exercisePrice.label }}</td>
-                        <td align="left">{{ form.exercisePrice }}</td>
+                        <td align="left" style="color: black;">{{ form.exercisePrice }}</td>
                     </tr>
                     <tr>
                         <td align="right"><b>Enter the uploadable file:</b></td>
-                        <td><input type = "file" name = "file" accept=".csv" /></td>
+                        <td><input type = "file" name = "file" accept=".csv" required="Required field" style="color: black;" /></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="center">{{ form.submit }}</td>
+                        <td colspan="2" align="center" style="color: black;">{{ form.submit }}</td>
                     </tr>
                 </table>
         </form>
 		</div>
 
-		<div id="News" class="tabcontent">
-  			<h3>News</h3>
-  			<p>Some news this fine day!</p>
+		<div id="Concept" class="tabcontent">
+  			The financial analysis web application that we have developed will have the following functional abilities:<br>
+  				<li>Analyzing csv files containing massive amounts of stock market data on the basis of technical terms used in the data.</li>
+  				<li>Using the binomial method of option pricing in order to correctly estimate the standard price for a given stock option.</li>
+  				<li>Allowing the user to input data based on either real life, favorable or unfavorable circumstances.</li>
+  				<li>Sending the result back to the user securely and discreetly in the for of an email.</li>
 		</div>
 
 		
 
-		<div id="About" class="tabcontent">
-  			<h3>About</h3>
-  			<p>Who we are and what we do.</p>
+		<div id="Future" class="tabcontent">
+			Future Works on this project:
+  			<li>Fully implement emails.	</li>	
+			<li>Create an API to input certain variables directly.</li>
+			<li>Add more animations and decorations to the UI.</li>
 		</div>
 		<div id="Contact" class="tabcontent">
-  			<h3>Contact</h3>
-  			<p>Get in touch, or swing by for a cup of coffee.</p>
+  			Email:
+  			Contact No.:
 		</div> 
         {% with messages= get_flashed_messages() %}
             {% if messages: %}
