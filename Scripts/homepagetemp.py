@@ -4,6 +4,7 @@ import pandas as pd
 from extractor import extracthigh,extractlow,extractdate
 from prediction_models import modelmin,modelmax
 from pricing_formula import retrieve_price
+from mail_sender import sendMail
 app=Flask(__name__)
 app.secret_key = 'development key'
 filename=''
@@ -33,6 +34,8 @@ def index():
               rfr=float(B)
            elif A=='exercisePrice':
               ep=float(B)
+           elif A=='email':
+              email_add=str(B)
         #print(type(csp))
         #print(csp)
         #print(rfr)
@@ -63,6 +66,7 @@ def index():
         #print(low)
         #print(date)
         #return render_template('index.html',form=form,filename=extract(filename))
+        sendMail(email_add,option_price)
         return render_template('result.html',price=option_price)
 
 if __name__ == '__main__':

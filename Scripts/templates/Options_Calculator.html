@@ -1,14 +1,31 @@
 <!doctype html>
 <html > 
     <head>
+    	<link rel = "stylesheet" 
+         href = "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Options Calculator</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="apple-touch-icon" href="{{url_for('static',filename='apple-touch-icon.png')}}">
-        <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
-        <style>
+        <style type="text/css">
+		.container-fluid {
+            background: #a52c644a;
+            text-align: center;
+            padding-top: 100px;
+            padding-bottom: 100px;
+         }   
+         .grid_system  div[class^="col"] {
+            border: 1px solid white;
+            background: #e4dcdc;
+            text-align: center;
+            padding-top: 5px;
+            padding-bottom: 5px
+         }
+	</style>
+        <!--<link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">-->
+        <!--<style>
             body, html {
   				height: 100%;
   				margin: 0;
@@ -46,7 +63,7 @@
 			#Future {background-color: orange;}
         </style>
         <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap-theme.min.css')}}">
-        <link rel="stylesheet" href="{{url_for('static',filename='css/main.min.css')}}">
+        <link rel="stylesheet" href="{{url_for('static',filename='css/main.min.css')}}">-->
         <script type="text/javascript">
         	function openPage(pageName, elmnt, color) {
   // Hide all elements with class="tabcontent" by default */
@@ -72,65 +89,75 @@
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click(); 
         </script>
-        <script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>
+        <!--<script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"></script>-->
     </head>
-    <body>
-    	<button class="tablink" onclick="openPage('Home', this, 'red')">Home</button>
-		<button class="tablink" onclick="openPage('Concept', this, 'green')" id="defaultOpen">Concepts</button>
-		<button class="tablink" onclick="openPage('Future', this, 'orange')">Future Works</button>
-		<button class="tablink" onclick="openPage('Contact', this, 'blue')">Contact</button>
-
+    <body style="background-color: yellow;">
+    	<div class="display-1 rounded mx-auto text-white bg-dark" align="center">Options Calculator</div>
+    	<div class="nav row navbar-dark" style="background-color: pink; padding-bottom: 5px;">
+    	<button class="tablink nav-item col-sm-3 active badge badge-pill badge-danger" onclick="openPage('Home', this, 'red')"><h5>Home</h5></button>
+		<button class="tablink nav-item col-sm-3 badge badge-pill badge-dark" onclick="openPage('Concept', this, 'black')"><h5>Concepts</h5></button>
+		<button class="tablink nav-item col-sm-3 badge badge-pill badge-warning" onclick="openPage('Future', this, 'yellow')"><h5>Future Works</h5></button>
+		<button class="tablink nav-item col-sm-3 badge badge-pill badge-primary" onclick="openPage('Contact', this, 'blue')"><h5>Contact</h5></button>
+		</div>
 		<div id="Home" class="tabcontent">
   			<form action="http://localhost:5000/next" method= "POST" enctype = "multipart/form-data"  class="form-control">
-                <table class="table-bordered" style="width: 103%;background-color: red;color: pink;margin-left: -12px; margin-top: -8px;">
-                    <tr>
-                        <th colspan="2" >
-                            <legend class="label-default" style="color: cyan;width: 100%;">Form for Option Evaluation</legend>
+                <table class="table-bordered grid_system container-fluid" >
+                    <tr class="table-danger row">
+                        <th colspan="2" class="col-sm-12">
+                            <legend class="label-default display-3">Form for Option Evaluation</legend>
                             {{ form.hidden_tag() }}
                         </th>
                     </tr>
-                    <tr>
-                        <td align="right">{{ form.currentStockPrice.label }}</td>
-                        <td align="left" style="color: black;">{{ form.currentStockPrice}}</td>
+                    <tr class="row">
+                        <td align="right" class="table-primary col-sm-6"><b><h2>{{ form.currentStockPrice.label }}</h2></b></td>
+                        <td align="left"  class="table-secondary col-sm-6 d-flex" >{{ form.currentStockPrice}}</td>
                     </tr>
-                    <tr>
-                        <td align="right">{{ form.riskFreeRate.label }}<a href="https://ycharts.com/indicators/10_year_treasury_rate" style="color: white;" target="_blank">(Find it here)</a></td>
-                        <td align="left" style="color: black;">{{ form.riskFreeRate }}</td>
+                    <tr class="row">
+                        <td align="right" class="table-primary col-sm-6"><b><h2>{{ form.riskFreeRate.label }}<a href="https://ycharts.com/indicators/10_year_treasury_rate" style="color: red;" target="_blank">(Find it here)</a></h2></b></td>
+                        <td align="left"  class="table-secondary col-sm-6 d-flex ">{{ form.riskFreeRate }}</td>
                     </tr>
-                    <tr>
-                        <td align="right">{{ form.exercisePrice.label }}</td>
-                        <td align="left" style="color: black;">{{ form.exercisePrice }}</td>
+                    <tr class="row">
+                        <td align="right" class="table-primary col-sm-6"><b><h2>{{ form.exercisePrice.label }}</h2></b></td>
+                        <td align="left"  class="table-secondary col-sm-6 d-flex ">{{ form.exercisePrice }}</td>
                     </tr>
-                    <tr>
-                        <td align="right"><b>Enter the uploadable file:</b></td>
-                        <td><input type = "file" name = "file" accept=".csv" required="Required field" style="color: black;" /></td>
+                    <tr class="row">
+                        <td align="right" class="table-primary col-sm-6"><b><h2>Enter the uploadable file:</h2></b></td>
+                        <td align="left" class="table-secondary col-sm-6 d-flex "><input type = "file" name = "file" accept=".csv" required="Required field" /></td>
                     </tr>
-                    <tr>
-                        <td colspan="2" align="center" style="color: black;">{{ form.submit }}</td>
+                    <tr class="row">
+                    	<td align="right" class="table-primary col-sm-6"><b><h2>Enter e-mail:</h2></b></td>
+                    	<td align="left" class="table-secondary col-sm-6 d-flex "><input type="text" name="email" required="Required field" ></td>
+                    </tr>
+                    <tr class="row">
+                        <td colspan="2" align="center" class="table-success col-sm-12 d-flex "><input type="submit" name="Submit" value="Input this information" class="btn btn-block btn-lg"></td>
                     </tr>
                 </table>
         </form>
 		</div>
 
 		<div id="Concept" class="tabcontent">
-  			The financial analysis web application that we have developed will have the following functional abilities:<br>
-  				<li>Analyzing csv files containing massive amounts of stock market data on the basis of technical terms used in the data.</li>
-  				<li>Using the binomial method of option pricing in order to correctly estimate the standard price for a given stock option.</li>
-  				<li>Allowing the user to input data based on either real life, favorable or unfavorable circumstances.</li>
-  				<li>Sending the result back to the user securely and discreetly in the for of an email.</li>
+  			<blockquote class="h4">The financial analysis web application that we have developed will have the following functional abilities:<br></blockquote>
+  			<ul>
+  				<li class="blockquote">Analyzing csv files containing massive amounts of stock market data on the basis of technical terms used in the data.</li>
+  				<li class="blockquote">Using the binomial method of option pricing in order to correctly estimate the standard price for a given stock option.</li>
+  				<li class="blockquote">Allowing the user to input data based on either real life, favorable or unfavorable circumstances.</li>
+  				<li class="blockquote">Sending the result back to the user securely and discreetly in the for of an email.</li>
+  				</ul>
 		</div>
 
 		
 
 		<div id="Future" class="tabcontent">
-			Future Works on this project:
-  			<li>Fully implement emails.	</li>	
-			<li>Create an API to input certain variables directly.</li>
-			<li>Add more animations and decorations to the UI.</li>
+			<h4>Future Works on this project:</h4>
+			<ul>
+  			<li class="blockquote">Fully implement emails.	</li>	
+			<li class="blockquote">Create an API to input certain variables directly.</li>
+			<li class="blockquote">Add more animations and decorations to the UI.</li>
+			</ul>
 		</div>
 		<div id="Contact" class="tabcontent">
-  			Email:
-  			Contact No.:
+  			<h4>Email:something@gmail.com</h4><br>
+  			<h4>Contact No.:5550005</h4>
 		</div> 
         {% with messages= get_flashed_messages() %}
             {% if messages: %}
@@ -150,13 +177,25 @@ document.getElementById("defaultOpen").click();
         {% for message in form.exercisePrice.errors %}
             <div>{{ message }}</div>
         {% endfor %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+            <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{url_for('static',filename='js/vendor/modernizr-2.8.3-respond-1.4.2.min.js')}}"><\/script>')</script>
 
         <script src="{{url_for('static',filename='js/vendor/bootstrap.min.js')}}"></script>
 
         <script src="{{url_for('static',filename='js/plugins.js')}}"></script>
         <script src="{{url_for('static',filename='js/main.js')}}"></script>
-        
+        -->
+        <script src = "https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+         integrity = "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+         crossorigin = "anonymous">
+      </script>
+      
+      <script src = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" 
+         integrity = "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" 
+         crossorigin = "anonymous">
+      </script>
+      
+      <script src = "bootstrap-4.0.0-dist/js/bootstrap.min.js">
+      </script>
     </body>
 </html>
